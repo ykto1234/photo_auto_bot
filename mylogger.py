@@ -17,12 +17,12 @@ def setup_logger(name, logfile="./log/application.log"):
     fh.setFormatter(fh_formatter)
 
     # create console handler with a INFO log level
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.INFO)
-    ch_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', '%Y-%m-%d %H:%M:%S')
-    ch.setFormatter(ch_formatter)
+    #ch = logging.StreamHandler()
+    #ch.setLevel(logging.INFO)
+    #ch_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', '%Y-%m-%d %H:%M:%S')
+    #ch.setFormatter(ch_formatter)
 
     # add the handlers to the logger
     logger.addHandler(fh)
-    logger.addHandler(ch)
+    #logger.addHandler(ch)
     return logger
