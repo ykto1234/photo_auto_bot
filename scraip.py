@@ -283,7 +283,7 @@ def cancel_wait_job():
     driver.get(CANCEL_WAIT_URL)
 
     ret = check_post_page(driver, LIMIT_COUNT, INTERVAL)
-    print("写真ページ監視結果：" + str(ret))
+    logger.debug("写真ページ監視結果：" + str(ret))
 
     if not ret:
         print("監視リトライ上限回数を超過したため、終了します")
@@ -330,6 +330,8 @@ def check_value_decimal(key_str, value_str):
 if __name__ == '__main__':
 
     try:
+        logger.debug("------------------------------------------------------------------------------------------------------------")
+        logger.debug("------------------------------------------------------------------------------------------------------------")
         logger.info("プログラム起動開始")
 
         # 有効期限チェック
@@ -419,7 +421,7 @@ if __name__ == '__main__':
             # 値が存在しない場合
             PAY_CLICK_FLG = "0"
 
-        mode = input("起動モードを選択してください（1：公開開始前監視、2：キャンセル待ち監視）:")
+        mode = input("起動モードを選択してください（1：公開開始前モード、2：キャンセル待ちモード）:")
         print("-----------------------------------------------------------------------------")
         mod_str = str(mode)
         if mode == "1":
@@ -432,7 +434,7 @@ if __name__ == '__main__':
             logger.debug("支払いボタンクリックフラグ：" + PAY_CLICK_FLG)
 
             schedule.every().day.at(START_TIME).do(main_job)
-            schedule.every().day.at(CANCEL_WAIT_TIME).do(main_job)
+            #schedule.every().day.at(CANCEL_WAIT_TIME).do(main_job)
 
             logger.info("監視開始時間まで待機開始")
 
@@ -440,7 +442,8 @@ if __name__ == '__main__':
                 print("....監視開始時間まで待機中.....")
                 schedule.run_pending()
                 time.sleep(1)
-                if exit_flg > 1:
+                #if exit_flg > 1:
+                if exit_flg > 0:
                     #『続行するには何かキーを押してください . . .』と表示させる
                     os.system('PAUSE')
                     sys.exit(0)
