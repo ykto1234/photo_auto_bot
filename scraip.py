@@ -205,7 +205,7 @@ def pay_info_input(driver, card_num, card_expiry, card_expirm, card_cvc, billing
     submit_count_list = soup.find_all("span", text=re.compile(".*支払う.*"))
     if len(submit_count_list) > 0:
         logger.info("支払うボタンが見つかりました")
-        if PAY_CLICK_FLG == 1:
+        if PAY_CLICK_FLG == "1":
             logger.info("支払うボタンクリックフラグが「1：クリックする」のため、支払うボタンをクリック")
             print("支払うボタンクリックフラグが「1：クリックする」のため、支払うボタンをクリックします")
             driver.find_elements_by_css_selector(SUBMIT_BTN_sel)[0].click()
