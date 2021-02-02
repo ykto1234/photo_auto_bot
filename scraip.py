@@ -219,7 +219,7 @@ def pay_info_input(driver, card_num, card_expiry, card_expirm, card_cvc, billing
 def expexpiration_date_check():
     import datetime
     now = datetime.datetime.now()
-    expexpiration_datetime = now.replace(month=2, day=3, hour=12, minute=0, second=0, microsecond=0)
+    expexpiration_datetime = now.replace(month=2, day=4, hour=12, minute=0, second=0, microsecond=0)
     logger.info("有効期限：" + str(expexpiration_datetime))
     if now < expexpiration_datetime:
         return True
