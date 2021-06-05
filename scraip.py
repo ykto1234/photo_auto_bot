@@ -68,9 +68,10 @@ def check_creator_page(driver, url, limit, interval):
 
     # 公開前の写真数を保持しておく
     # ターゲット出現を待機
+    POST_container_sel = 'div.latest-posts'
     POST_sel = "div.col-6.col-sm-4.post-col"
     WebDriverWait(driver, 30).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, POST_sel))
+        EC.presence_of_element_located((By.CSS_SELECTOR, POST_container_sel))
     )
     soup = BeautifulSoup(driver.page_source, features="html.parser")
     before_post_list = soup.select(POST_sel)
@@ -89,9 +90,8 @@ def check_creator_page(driver, url, limit, interval):
     while True:
 
         # ターゲット出現を待機
-        POST_sel = "div.col-6.col-sm-4.post-col"
         WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, POST_sel))
+            EC.presence_of_element_located((By.CSS_SELECTOR, POST_container_sel))
         )
         soup = BeautifulSoup(driver.page_source, features="html.parser")
         post_list = soup.select(POST_sel)
